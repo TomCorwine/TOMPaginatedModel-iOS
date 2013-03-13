@@ -14,8 +14,8 @@
 		F192827116F13F1C0021447E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F192827016F13F1C0021447E /* UIKit.framework */; };
 		F192827216F13F1C0021447E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F192825F16F13F1C0021447E /* Foundation.framework */; };
 		F192827516F13F1C0021447E /* libTOMPaginatedModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F192825C16F13F1C0021447E /* libTOMPaginatedModel.a */; };
-		F192827B16F13F1C0021447E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F192827916F13F1C0021447E /* InfoPlist.strings */; };
 		F192827E16F13F1C0021447E /* TOMPaginatedModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F192827D16F13F1C0021447E /* TOMPaginatedModelTests.m */; };
+		F192828916F1400F0021447E /* TOMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F192828816F1400F0021447E /* TOMModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,16 +44,16 @@
 /* Begin PBXFileReference section */
 		F192825C16F13F1C0021447E /* libTOMPaginatedModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTOMPaginatedModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F192825F16F13F1C0021447E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F192826316F13F1C0021447E /* TOMPaginatedModel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TOMPaginatedModel-Prefix.pch"; sourceTree = "<group>"; };
 		F192826416F13F1C0021447E /* TOMPaginatedModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOMPaginatedModel.h; sourceTree = "<group>"; };
 		F192826616F13F1C0021447E /* TOMPaginatedModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOMPaginatedModel.m; sourceTree = "<group>"; };
 		F192826D16F13F1C0021447E /* TOMPaginatedModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TOMPaginatedModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F192826E16F13F1C0021447E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F192827016F13F1C0021447E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F192827816F13F1C0021447E /* TOMPaginatedModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TOMPaginatedModelTests-Info.plist"; sourceTree = "<group>"; };
-		F192827A16F13F1C0021447E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F192827C16F13F1C0021447E /* TOMPaginatedModelTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOMPaginatedModelTests.h; sourceTree = "<group>"; };
 		F192827D16F13F1C0021447E /* TOMPaginatedModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOMPaginatedModelTests.m; sourceTree = "<group>"; };
+		F192828716F1400F0021447E /* TOMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOMModel.h; sourceTree = "<group>"; };
+		F192828816F1400F0021447E /* TOMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,22 +113,15 @@
 			children = (
 				F192826416F13F1C0021447E /* TOMPaginatedModel.h */,
 				F192826616F13F1C0021447E /* TOMPaginatedModel.m */,
-				F192826216F13F1C0021447E /* Supporting Files */,
 			);
 			path = TOMPaginatedModel;
-			sourceTree = "<group>";
-		};
-		F192826216F13F1C0021447E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F192826316F13F1C0021447E /* TOMPaginatedModel-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		F192827616F13F1C0021447E /* TOMPaginatedModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				F192828716F1400F0021447E /* TOMModel.h */,
+				F192828816F1400F0021447E /* TOMModel.m */,
 				F192827C16F13F1C0021447E /* TOMPaginatedModelTests.h */,
 				F192827D16F13F1C0021447E /* TOMPaginatedModelTests.m */,
 				F192827716F13F1C0021447E /* Supporting Files */,
@@ -140,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				F192827816F13F1C0021447E /* TOMPaginatedModelTests-Info.plist */,
-				F192827916F13F1C0021447E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -216,7 +208,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F192827B16F13F1C0021447E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F192827E16F13F1C0021447E /* TOMPaginatedModelTests.m in Sources */,
+				F192828916F1400F0021447E /* TOMModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,17 +256,6 @@
 			targetProxy = F192827316F13F1C0021447E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		F192827916F13F1C0021447E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F192827A16F13F1C0021447E /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F192827F16F13F1C0021447E /* Debug */ = {
@@ -301,8 +282,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -324,7 +305,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -335,7 +316,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/TOMPaginatedModel.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TOMPaginatedModel/TOMPaginatedModel-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -347,7 +328,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/TOMPaginatedModel.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TOMPaginatedModel/TOMPaginatedModel-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -362,7 +343,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TOMPaginatedModel/TOMPaginatedModel-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "TOMPaginatedModelTests/TOMPaginatedModelTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -377,7 +358,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TOMPaginatedModel/TOMPaginatedModel-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "TOMPaginatedModelTests/TOMPaginatedModelTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
