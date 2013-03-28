@@ -16,13 +16,13 @@ typedef void (^TOMPaginatedModelResultsCompletionBlock)(NSArray *array);
 typedef void (^TOMPaginatedModelResultCompletionBlock)(id item);
 
 @interface TOMPaginatedModel : NSObject
-+ (NSUInteger)numberOfItems;
++ (NSUInteger)numberOfItemsForInfoDictionary:(NSDictionary *)infoDictionary;
 + (void)itemsInRange:(NSRange)range forceRefresh:(BOOL)forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:(TOMPaginatedModelResultsCompletionBlock)completionBlock;
 + (void)itemAtIndex:(NSUInteger)index forceRefresh:(BOOL)forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:(TOMPaginatedModelResultCompletionBlock)completionBlock;
 //+ (void)removeItemAtIndex:(NSUInteger)index;
 //+ (void)insertItem:(id)item atIndex:(NSUInteger)index;
-+ (void)setItem:(id)item atIndex:(NSUInteger)index;
-+ (void)setItems:(NSArray *)items startingAtIndex:(NSUInteger)index;
++ (void)setItem:(id)item atIndex:(NSUInteger)index infoDictionary:(NSDictionary *)infoDictionary;
++ (void)setItems:(NSArray *)items startingAtIndex:(NSUInteger)index infoDictionary:(NSDictionary *)infoDictionary;
 + (void)dumpCache;
 
 + (NSTimeInterval)ttlForCachedResults;
