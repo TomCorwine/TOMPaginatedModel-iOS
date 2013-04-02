@@ -20,16 +20,16 @@
 + (NSUInteger)numberOfItemsForInfoDictionary:(NSDictionary *)infoDictionary
 {
 	NSAssertMainThread;
-	NSUInteger count = 0;
+	NSNumber *count = nil;
 	NSString *keyPrefix = [self keyPrefixForInfoDictionary:infoDictionary];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", keyPrefix];
 	NSArray *keys = [[self cache].allKeys filteredArrayUsingPredicate:predicate];
 	for (NSString *key in keys)
 	{
 		NSString *filteredKey = [key substringFromIndex:keyPrefix.length];
-		count = (filteredKey.integerValue > count ? filteredKey.integerValue : count);
+		count = @(filteredKey.integerValue > count.integerValue ? filteredKey.integerValue : count.integerValue);
 	}
-	return (count ? count + 1 : 0); // If count has some value, return that value plus one since items are zero indexed. Otherwise, return zero.
+	return (count ? count.integerValue + 1 : 0); // If count has some value, return that value plus one since items are zero indexed. Otherwise, return zero.
 }
 
 + (void)itemsInRange:(NSRange)range forceRefresh:(BOOL)forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:(TOMPaginatedModelResultsCompletionBlock)completionBlock
@@ -65,6 +65,8 @@
 				NSArray *allItemsArray = [self itemsInRange:range infoDictionary:infoDictionary];
 				if (allItemsArray.count == range.length && NO == [allItemsArray containsObject:[NSNull null]] && completionBlock)
 					completionBlock(allItemsArray);
+				else if (completionBlock)
+					completionBlock(nil);
 			}
 			else
 			{
