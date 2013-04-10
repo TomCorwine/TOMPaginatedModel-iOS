@@ -145,8 +145,10 @@
 	NSMutableString *mutableString = @"".mutableCopy;
 	for (NSString *dictionaryKey in [dictionary.allKeys sortedArrayUsingSelector:@selector(compare:)])
 	{
-		id object = dictionary[dictionaryKey];
-		[mutableString appendFormat:@"%@:%@:", dictionaryKey, object];
+		NSObject *object = dictionary[dictionaryKey];
+		[mutableString appendString:dictionaryKey];
+		[mutableString appendString:object.description];
+		//[mutableString appendFormat:@"%@:%@:", dictionaryKey, object];
 	}
 	return (mutableString.length ? [NSString stringWithString:mutableString] : @"*");
 }
