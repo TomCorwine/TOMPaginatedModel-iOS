@@ -12,8 +12,8 @@
 	#error TOMJSONAdapter requires iOS 4.3 or later
 #endif
 
-typedef void (^TOMPaginatedModelResultsCompletionBlock)(NSArray *array);
-typedef void (^TOMPaginatedModelResultCompletionBlock)(id item);
+typedef void (^TOMPaginatedModelResultsCompletionBlock)(NSArray *array, NSError *error);
+typedef void (^TOMPaginatedModelResultCompletionBlock)(id item, NSError *error);
 
 @interface TOMPaginatedModel : NSObject
 + (NSUInteger)numberOfItemsForInfoDictionary:(NSDictionary *)infoDictionary;

@@ -13,8 +13,14 @@
 
 + (NSMutableDictionary *)cache
 {
-	NSAssert(NO, @"[%@ cache] must be overridden in child classes.", NSStringFromClass([self class]));
-	return nil;
+	//NSAssert(NO, @"[%@ cache] must be overridden in child classes.", NSStringFromClass([self class]));
+	//return nil;
+	static NSMutableDictionary *mutableDictionary;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		mutableDictionary = @{}.mutableCopy;
+	});
+	return mutableDictionary;
 }
 
 + (NSUInteger)numberOfItemsForInfoDictionary:(NSDictionary *)infoDictionary
@@ -44,7 +50,7 @@
 		if (NO == [array containsObject:[NSNull null]])
 		{
 			if (completionBlock)
-				completionBlock(array);
+				completionBlock(array, nil);
 			// The array in cache contained all the items asked for so quit here. Otherwise, continue with network call.
 			if (array.count == range.length)
 			return;
@@ -56,7 +62,7 @@
 	lastFetch = [NSDate date];
 	for (NSUInteger page = firstPage; page <= lastPage; page++)
 	{
-		[self fetchItemsFromServerForPage:page infoDictionary:infoDictionary completionBlock:^(NSArray *array){
+		[self fetchItemsFromServerForPage:page infoDictionary:infoDictionary completionBlock:^(NSArray *array, NSError *error){
 			if (array)
 			{
 				NSUInteger index = (page - 1) * itemsPerPage;
@@ -64,14 +70,14 @@
 				[self setItems:array startingAtIndex:index infoDictionary:infoDictionary];
 				NSArray *allItemsArray = [self itemsInRange:range infoDictionary:infoDictionary];
 				if (allItemsArray.count == range.length && NO == [allItemsArray containsObject:[NSNull null]] && completionBlock)
-					completionBlock(allItemsArray);
+					completionBlock(allItemsArray, error);
 				else if (completionBlock)
-					completionBlock(nil);
+					completionBlock(nil, error);
 			}
 			else
 			{
 				if (completionBlock)
-					completionBlock(nil);
+					completionBlock(nil, error);
 			}
 		}];
 	}
@@ -79,10 +85,10 @@
 
 + (void)itemAtIndex:(NSUInteger)index forceRefresh:(BOOL)forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:(TOMPaginatedModelResultCompletionBlock)completionBlock
 {
-	[self itemsInRange:NSMakeRange(index, 1) forceRefresh:forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:^(NSArray *array){
+	[self itemsInRange:NSMakeRange(index, 1) forceRefresh:forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:^(NSArray *array, NSError *error){
 		id item = (array.count ? array[0] : nil);
 		if (completionBlock)
-			completionBlock([item isKindOfClass:[NSNull class]] ? nil : item);
+			completionBlock(([item isKindOfClass:[NSNull class]] ? nil : item), error);
 	}];
 }
 
