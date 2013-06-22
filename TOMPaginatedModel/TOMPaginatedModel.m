@@ -69,10 +69,13 @@
 				//NSLog(@"StartingIndex: %d", index);
 				[self setItems:array startingAtIndex:index infoDictionary:infoDictionary];
 				NSArray *allItemsArray = [self itemsInRange:range infoDictionary:infoDictionary];
-				if (allItemsArray.count == range.length && NO == [allItemsArray containsObject:[NSNull null]] && completionBlock)
+				NSMutableArray *mutableAllItemsArray = allItemsArray.mutableCopy;
+				[mutableAllItemsArray removeObject:[NSNull null]];
+				allItemsArray = [NSArray arrayWithArray:mutableAllItemsArray];
+				if (/*allItemsArray.count == range.length && NO == [allItemsArray containsObject:[NSNull null]] && */completionBlock)
 					completionBlock(allItemsArray, error);
-				else if (completionBlock)
-					completionBlock(nil, error);
+				//else if (completionBlock)
+				//	completionBlock(nil, error);
 			}
 			else
 			{
@@ -154,7 +157,6 @@
 		NSObject *object = dictionary[dictionaryKey];
 		[mutableString appendString:dictionaryKey];
 		[mutableString appendString:object.description];
-		//[mutableString appendFormat:@"%@:%@:", dictionaryKey, object];
 	}
 	return (mutableString.length ? [NSString stringWithString:mutableString] : @"*");
 }
