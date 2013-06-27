@@ -48,6 +48,7 @@
 	NSTimeInterval ttlForCachedResults = [self ttlForCachedResults];
 	NSTimeInterval ttlForRefreshedResults = [self ttlForRefreshedResults];
 	NSArray *array = [self itemsInRange:range infoDictionary:infoDictionary];
+	NSLog(@"Time: %d", abs(lastFetch.timeIntervalSinceNow));
 	if (array.count && lastFetch && abs(lastFetch.timeIntervalSinceNow) < (forceRefresh ? ttlForRefreshedResults : ttlForCachedResults))
 	{
 		if (NO == [array containsObject:[NSNull null]])
@@ -66,6 +67,7 @@
 	for (NSUInteger page = firstPage; page <= lastPage; page++)
 	{
 		NSUInteger index = (page - 1) * itemsPerPage;
+		/*
 		NSArray *allItemsArray = [self itemsInRange:NSMakeRange(index, itemsPerPage) infoDictionary:infoDictionary];
 		if (NO == [allItemsArray containsObject:[NSNull null]])
 		{
@@ -74,6 +76,7 @@
 				completionBlock(allItemsArray, nil);
 			continue;
 		}
+		 */
 		[self fetchItemsFromServerForPage:page infoDictionary:infoDictionary completionBlock:^(NSArray *array, NSError *error){
 			if (array)
 			{
