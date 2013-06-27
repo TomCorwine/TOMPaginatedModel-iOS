@@ -41,6 +41,9 @@
 + (void)itemsInRange:(NSRange)range forceRefresh:(BOOL)forceRefresh infoDictionary:(NSDictionary *)infoDictionary completionBlock:(TOMPaginatedModelResultsCompletionBlock)completionBlock
 {
 	NSAssertMainThread;
+	if (1 > range.length) // range length should be 1 or greater
+		return;
+
 	static NSDate *lastFetch = nil;
 	NSTimeInterval ttlForCachedResults = [self ttlForCachedResults];
 	NSTimeInterval ttlForRefreshedResults = [self ttlForRefreshedResults];
