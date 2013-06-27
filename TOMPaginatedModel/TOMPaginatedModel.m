@@ -65,10 +65,18 @@
 	lastFetch = [NSDate date];
 	for (NSUInteger page = firstPage; page <= lastPage; page++)
 	{
+		NSUInteger index = (page - 1) * itemsPerPage;
+		NSArray *allItemsArray = [self itemsInRange:NSMakeRange(index, itemsPerPage) infoDictionary:infoDictionary];
+		if (NO == [allItemsArray containsObject:[NSNull null]])
+		{
+			// items are in cache, no need to make network call
+			if (completionBlock)
+				completionBlock(allItemsArray, nil);
+			continue;
+		}
 		[self fetchItemsFromServerForPage:page infoDictionary:infoDictionary completionBlock:^(NSArray *array, NSError *error){
 			if (array)
 			{
-				NSUInteger index = (page - 1) * itemsPerPage;
 				//NSLog(@"StartingIndex: %d", index);
 				[self setItems:array startingAtIndex:index infoDictionary:infoDictionary];
 				NSArray *allItemsArray = [self itemsInRange:range infoDictionary:infoDictionary];
