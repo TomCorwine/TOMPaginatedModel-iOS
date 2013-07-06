@@ -48,7 +48,6 @@
 	NSTimeInterval ttlForCachedResults = [self ttlForCachedResults];
 	NSTimeInterval ttlForRefreshedResults = [self ttlForRefreshedResults];
 	NSArray *array = [self itemsInRange:range infoDictionary:infoDictionary];
-	NSLog(@"Time: %d", abs(lastFetch.timeIntervalSinceNow));
 	if (array.count && lastFetch && abs(lastFetch.timeIntervalSinceNow) < (forceRefresh ? ttlForRefreshedResults : ttlForCachedResults))
 	{
 		if (NO == [array containsObject:[NSNull null]])
